@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ category.name }}</h5>
                         <p class="card-text">{{ category.description }}</p>
-                        <a href="{ url 'products:category_products' category.slug %}" class="btn btn-sm btn-outline-secondary">View Category</a>
+                        <a href="{% url 'products:category_products' category.slug %}" class="btn btn-sm btn-outline-secondary">View Category</a>
                     </div>
                 </div>
             </div>
@@ -37,6 +37,6 @@
     </div>
 
     <div class="text-center">
-        <a href="{ url 'products:product_list' %}" class="btn btn-primary">View All Products</a>
+        <a href="{% url 'products:product_list' %}" class="btn btn-primary">View All Products</a>
     </div>
 {% endblock %}

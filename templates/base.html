@@ -30,10 +30,10 @@
                                     Shop
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="{ url 'products:category_products' slug='Men' %}">Men's</a></li>
-                                    <li><a class="dropdown-item" href="{ url 'products:category_products' slug='Women' %}">Women's</a></li>
-                                    <li><a class="dropdown-item" href="{ url 'app:category_products' 'kids' %} %}">Kid's</a></li>
-                                    <li><a class="dropdown-item" href="{ url 'products:category_products' slug='Fragrance' %}">Fragrance</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products:category_products' slug='Men' %}">Men's</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products:category_products' slug='Women' %}">Women's</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products:category_products' 'kids' %}">Kid's</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products:category_products' slug='Fragrance' %}">Fragrance</a></li>
                                 </ul>
                             </div>
                         </li>
