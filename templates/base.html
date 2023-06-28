@@ -13,8 +13,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <img src="{% static 'img/logo.png' %}" alt="Logo" height="30" class="d-inline-block align-text-top">
-                    Fashion Marketplace
+                    <img src="{% static 'img/logoo.png' %}" alt="Logo" height="30" class="d-inline-block align-text-top">
+                    FashionHub
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -30,27 +30,27 @@
                                     Shop
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="{% url 'products:category_products' slug='Men' %}">Men's</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'products:category_products' slug='Women' %}">Women's</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'products:category_products' 'kids' %}">Kid's</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'products:category_products' slug='Fragrance' %}">Fragrance</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products:category_products' slug='mens' %}">Men's</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products:category_products' slug='wemans' %}">Women's</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products:category_products' slug='kids' %}">kids</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products:category_products' slug='fragrances' %}">Fragrance</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="nav-item{% block cart_active %}{% endblock %}">
-                            <a class="nav-link" href="{ url 'app:cart_detail' %}">
+                            <a class="nav-link" href="{% url 'app:cart_detail' %}">
                                 <span class="badge bg-danger">{{ cart|length }}</span>
                                 Cart
                             </a>
                         </li>
                     </ul>
-                    <form class="d-flex" method="get" action="{ url 'app:search' %}">
+                    <form class="d-flex" method="get" action="{% url 'app:search' %}">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{ query }}">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                     {% if user.is_authenticated %}
                     <li class="nav-item{% block product_upload_active %}{% endblock %}">
-                        <a class="nav-link" href="{ url 'products:product_upload' %}">Sell-Product</a>
+                        <a class="nav-link" href="{% url 'products:product_upload' %}">Sell-Product</a>
                     </li>
                     <div class="dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -59,17 +59,17 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Orders</a></li>
-                            <li><a class="dropdown-item" href="{ url 'app:wishlist' %}">Wishlist</a></li>
+                            <li><a class="dropdown-item" href="{% url 'app:wishlist' %}">Wishlist</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{ url 'app:logout_view' %}">Logout</a></li>
+                            <li><a class="dropdown-item" href="{% url 'app:logout_view' %}">Logout</a></li>
 
                         </ul>
                     </div>
                     {% else %}
 
                     <div class="d-flex">
-                        <a class="btn btn-outline-primary" href="{ url 'app:login_view' %}">Login</a>
-                        <a class="btn btn-outline-primary ms-2" href="{ url 'app:register_view' %}">Register</a>
+                        <a class="btn btn-outline-primary" href="{% url 'app:login_view' %}">Login</a>
+                        <a class="btn btn-outline-primary ms-2" href="{% url 'app:register_view' %}">Register</a>
                     </div>
                     {% endif %}
                 </div>

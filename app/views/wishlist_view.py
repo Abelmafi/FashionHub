@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
-# from ..models.wishlist import Wishlist
+from ..models.wishlist import Wishlist
 from products.models import Product
 
 @login_required
@@ -27,16 +27,15 @@ def wishlist(request):
     View to display user's wishlist
     """
     wishlist = Wishlist.objects.get(user=request.user)
-    # wishlist = Wishlist.objects.get(pk=wishlist_id)
-    products = wishlist.products.all()
+    if wishlist:
+        products = wishlist.products.all()
+        context = {
+            'wishlist': wishlist,
+            'products': products
+        }
+        return render(request, 'wishlist.html', context)
+    return render(request, 'wishlist.html', None)
 
-    context = {
-        'wishlist': wishlist,
-        'products': products
-    }
-
-
-    return render(request, 'wishlist.html', context)
 
 
 @login_required
@@ -46,7 +45,7 @@ def remove_from_wishlist(request, product_id):
     """
     wishlist = Wishlist.objects.get(user=request.user)
     product = Product.objects.get(id=product_id)
+    message = "{} has been removed from your wishlist!".format(product.name)
     wishlist.products.remove(product)
-    message = f"{wishlist.products.name} has been removed from your wishlist!"
     data = {'message': message}
     return JsonResponse(data)

@@ -1,7 +1,4 @@
 from django import forms
-from .models import Product, Review, Category
-
-from django import forms
 from .models import *
 
 class ProductForm(forms.ModelForm):
@@ -51,16 +48,10 @@ class ProductForm(forms.ModelForm):
         required=False,
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}),
     )
-   # slug = forms.SlugField(
-   #     label='Slug',
-   #     widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter slug'}),
-   # )
-
     class Meta:
         model = Product
         fields = ['name', 'description', 'price', 'available_sizes', 'available_colors', 'category', 'brand', 'image', 'is_newarrival']
 
-    # Add additional custom form field validation and customization here
     def clean_price(self):
         price = self.cleaned_data['price']
         if price <= 0:
@@ -75,23 +66,21 @@ class ProductForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['available_sizes'].widget.attrs.update({'class': 'form-check-input'})
-        self.fields['available_colors'].widget.attrs.update({'class': 'form-check-input'})
+        self.fields['name'].widget.attrs['class'] = 'form-control'
+        self.fields['description'].widget.attrs['class'] = 'form-control'
+        self.fields['price'].widget.attrs['class'] = 'form-control'
+        self.fields['available_sizes'].widget.attrs['class'] = 'form-control'
+        self.fields['available_colors'].widget.attrs['class'] = 'form-control'
+        self.fields['category'].widget.attrs['class'] = 'form-control'
+        self.fields['brand'].widget.attrs['class'] = 'form-control'
+        self.fields['image'].widget.attrs['class'] = 'form-control-file'
+        self.fields['is_newarrival'].widget.attrs['class'] = 'form-check-input'
+
 
    # def __init__(self, *args, **kwargs):
    #     super().__init__(*args, **kwargs)
-   #     self.fields['name'].widget.attrs['class'] = 'form-control'
-   #     self.fields['description'].widget.attrs['class'] = 'form-control'
-   #     self.fields['price'].widget.attrs['class'] = 'form-control'
-   #     self.fields['available_sizes'].widget.attrs['class'] = 'form-control'
-   #     self.fields['available_colors'].widget.attrs['class'] = 'form-control'
-   #     self.fields['category'].widget.attrs['class'] = 'form-control'
-   #     self.fields['brand'].widget.attrs['class'] = 'form-control'
-   #     self.fields['image'].widget.attrs['class'] = 'form-control-file'
-   #     self.fields['is_featured'].widget.attrs['class'] = 'form-check-input'
-   #     self.fields['is_newarrival'].widget.attrs['class'] = 'form-check-input'
-   #     self.fields['slug'].widget.attrs['class'] = 'form-control'
-
+   #     self.fields['available_sizes'].widget.attrs.update({'class': 'form-check-input'})
+   #     self.fields['available_colors'].widget.attrs.update({'class': 'form-check-input'})
 #class ProductForm(forms.ModelForm):
 #    class Meta:
 #        model = Product

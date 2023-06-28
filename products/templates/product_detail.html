@@ -14,22 +14,32 @@
         </div>
         <div class="col-md-6">
             <h1>{{ product.name }}</h1>
-            <p class="text-muted">{{ product.get_category_display }}</p>
-            <p class="h3">${{ product.price }}</p>
-            <form method="POST" action="% url 'add_to_cart' product.id %}">
+            <p>{{ product.description }}</p>
+            <p>Price: ${{ product.price }}</p>
+            <p>Brand: {{ product.brand.name }}</p>
+
+            <h3>Available Sizes:</h3>
+            <ul>
+                {% for size in product.available_sizes.all %}
+                <li>{{ size.name }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Available Colors:</h3>
+            <ul>
+                {% for color in product.available_colors.all %}
+                <li>{{ color.name }}</li>
+                {% endfor %}
+            </ul>
+            <form method="POST" action="{% url 'app:add_to_cart' product.id %}">
                 {% csrf_token %}
-                <div class="mb-3">
-                    <label for="size" class="form-label">Size</label>
-                    <select id="size" class="form-select" name="size">
-                        <option value="{{ product.available_sizes }}">{{ product.available_sizes }}</option>
-                    </select>
-                </div>
                 <div class="mb-3">
                     <label for="quantity" class="form-label">Quantity</label>
                     <input type="number" class="form-control" id="quantity" name="quantity" min="1" value="1" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Add to Cart</button>
             </form>
+
         </div>
     </div>
 

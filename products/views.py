@@ -13,6 +13,7 @@ def product_upload(request):
             product = form.save(commit=False)
             product.seller = request.user
             product.save()
+            form.save_m2m()
             messages.success(request, 'Product uploaded successfully!')
             return redirect('products:product_detail', id=product.id)
     else:

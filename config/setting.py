@@ -57,7 +57,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'zemengna_db',
+        'NAME': 'FashionHub_db',
         'USER': 'root',
         'PASSWORD': 'bdu0600052',
         'HOST': 'localhost',

@@ -21,6 +21,12 @@
                         <option value="{{ size }}">{{ size }}</option>
                         {% endfor %}
                     </select>
+                    <label for="brand" class="form-label">Brand</label>
+                    <select id="brand" class="form-select" name="brand">
+                        {% for brand in product.brand %}
+                        <option value="{{ brand }}">{{ brand }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="quantity" class="form-label">Quantity</label>
