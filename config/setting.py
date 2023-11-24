@@ -57,11 +57,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'FashionHub_db',
-        'USER': 'root',
-        'PASSWORD': 'bdu0600052',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': os.environ.get('MYSQL_DATABASE'),
+        'USER': os.environ.get('MYSQL_USER'),
+        'PASSWORD': os.environ.get('MYSQL_ROOT_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST', 'db'),  # Use the service name from docker-compose
+        'PORT': os.environ.get('DB_PORT', '3306'),
+
+        # 'NAME': 'FashionHub_db',
+        # 'USER': 'root',
+        # 'PASSWORD': 'bdu0600052',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306',
         'OPTIONS': {
             'charset': 'utf8mb4',
         },
